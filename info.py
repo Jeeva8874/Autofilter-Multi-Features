@@ -35,17 +35,17 @@ CACHE_TIME = int(environ.get('CACHE_TIME', 300))
 USE_CAPTION_FILTER = bool(environ.get('USE_CAPTION_FILTER', True))
 
 PICS = (environ.get('PICS', 'https://envs.sh/Sau.jpg https://envs.sh/Sat.jpg https://envs.sh/Sai.jpg https://envs.sh/Sab.jpg https://envs.sh/Saq.jpg https://envs.sh/SaS.jpg https://envs.sh/SaW.jpg https://envs.sh/SaB.jpg https://envs.sh/SaI.jpg https://envs.sh/San.jpg https://envs.sh/SaT.jpg https://envs.sh/Sap.jpg')).split() #SAMPLE PIC
-NOR_IMG = environ.get("NOR_IMG", "https://graph.org/file/549fd9f3272214acade82.jpg")
-MELCOW_VID = environ.get("MELCOW_VID", "https://graph.org/file/6988f560cf6d67339f628.jpg")
+NOR_IMG = environ.get("NOR_IMG", "https://envs.sh/qbB.jpg")
+MELCOW_VID = environ.get("MELCOW_VID", "https://graph.org/file/1f774a8adb603614fc385.mp4")
 SPELL_IMG = environ.get("SPELL_IMG", "https://graph.org/file/549fd9f3272214acade82.jpg")
 SUBSCRIPTION = (environ.get('SUBSCRIPTION', 'https://graph.org/file/347c1f79f36d3cf14e0f5.jpg'))
-CODE = (environ.get('CODE', 'https://graph.org/file/02e7ecc3e2693b481b914.jpg'))
-REFER_PICS = (environ.get("REFER_PICS", "https://graph.org/file/1c1a3cb814cd719ae3bd3.jpg https://graph.org/file/1a2e64aee3d4d10edd930.jpg")).split()
+CODE = (environ.get('CODE', 'https://envs.sh/w2S.jpg'))
+REFER_PICS = (environ.get("REFER_PICS", "https://graph.org/file/1a2e64aee3d4d10edd930.jpg https://graph.org/file/1a2e64aee3d4d10edd930.jpg")).split()
 
 #stream link shortner
 STREAM_SITE = (environ.get('STREAM_SITE', 'shareus.io'))
 STREAM_API = (environ.get('STREAM_API', ''))
-STREAMHTO = (environ.get('STREAMHTO', 'https://t.me/How_to_Download_7x/32'))
+STREAMHTO = (environ.get('STREAMHTO', 'https://t.me/How_To_Get_Movie'))
 
 # Command
 COMMAND_HAND_LER = environ.get("COMMAND_HAND_LER", "/")
@@ -54,17 +54,17 @@ PREFIX = environ.get("PREFIX", "/")
 CHAT_GROUP = int(environ.get("CHAT_GROUP", "-1001953724858"))
 
 # Admins, Channels & Users
-ADMINS = [int(admin) if id_pattern.search(admin) else admin for admin in environ.get('ADMINS', '6497757690 5115691197').split()]
-CHANNELS = [int(ch) if id_pattern.search(ch) else ch for ch in environ.get('CHANNELS', '-1001619818259').split()]
-auth_users = [int(user) if id_pattern.search(user) else user for user in environ.get('AUTH_USERS', '').split()]
+ADMINS = [int(admin) if id_pattern.search(admin) else admin for admin in environ.get('ADMINS', '6762558871').split()]
+CHANNELS = [int(ch) if id_pattern.search(ch) else ch for ch in environ.get('CHANNELS', '-1002480489590').split()]
+auth_users = [int(user) if id_pattern.search(user) else user for user in environ.get('AUTH_USERS', '6762558871').split()]
 AUTH_USERS = (auth_users + ADMINS) if auth_users else []
-PREMIUM_USER = [int(user) if id_pattern.search(user) else user for user in environ.get('PREMIUM_USER', '6497757690').split()]
-auth_channel = environ.get('AUTH_CHANNEL', '') #Channel / Group Id for force sub ( make sure bot is admin )
+PREMIUM_USER = [int(user) if id_pattern.search(user) else user for user in environ.get('PREMIUM_USER', '6762558871').split()]
+auth_channel = environ.get('AUTH_CHANNEL', '-1002181741528') #Channel / Group Id for force sub ( make sure bot is admin )
 auth_grp = environ.get('AUTH_GROUP')
 AUTH_CHANNEL = int(auth_channel) if auth_channel and id_pattern.search(auth_channel) else None
 AUTH_GROUPS = [int(ch) for ch in auth_grp.split()] if auth_grp else None
-support_chat_id = environ.get('SUPPORT_CHAT_ID', '-1001566837125') # support group id ( make sure bot is admin )
-reqst_channel = environ.get('REQST_CHANNEL_ID', '-1001905367057') # request channel id ( make sure bot is admin )
+support_chat_id = environ.get('SUPPORT_CHAT_ID', '-1002329218829') # support group id ( make sure bot is admin )
+reqst_channel = environ.get('REQST_CHANNEL_ID', '-1002369002372') # request channel id ( make sure bot is admin )
 REQST_CHANNEL = int(reqst_channel) if reqst_channel and id_pattern.search(reqst_channel) else None
 SUPPORT_CHAT_ID = int(support_chat_id) if support_chat_id and id_pattern.search(support_chat_id) else None
 NO_RESULTS_MSG = bool(environ.get("NO_RESULTS_MSG", False)) # True if you want no results messages in Log Channel
@@ -91,34 +91,34 @@ APPROVED = environ.get("APPROVED_WELCOME", "on").lower()
 # Referal Settings
 REFERAL_COUNT = int(environ.get('REFERAL_COUNT', '20')) # number of referal count
 REFERAL_PREMEIUM_TIME = environ.get('REFERAL_PREMEIUM_TIME', '1 week')
-OWNER_USERNAME = environ.get('OWNER_USERNAME', 'sewxiy') # owner username without @
+OWNER_USERNAME = environ.get('OWNER_USERNAME', 'Heart_thieft') # owner username without @
 
 LOG_CHANNEL = int(environ.get('LOG_CHANNEL', '-1002391269521')) #Log channel id ( make sure bot is admin )
-DUMP_CHNL = int(environ.get('DUMP_CHNL', '-1002067012611'))
+DUMP_CHNL = int(environ.get('DUMP_CHNL', '-1002494713645'))
 
 # Verify
 VERIFY = bool(environ.get('VERIFY', True)) # Verification On ( True ) / Off ( False )
-HOWTOVERIFY = environ.get('HOWTOVERIFY', 'https://t.me/How_to_Download_7x/26') # How to open tutorial link for verification
+HOWTOVERIFY = environ.get('HOWTOVERIFY', 'https://t.me/How_To_Get_Movie') # How to open tutorial link for verification
 
 # Others
-SHORTLINK_URL = environ.get('SHORTLINK_URL', 'shareus.io')
-SHORTLINK_API = environ.get('SHORTLINK_API', '1Jh0re6olVUHnr3eEyFG7NZX7RF3')
+SHORTLINK_URL = environ.get('SHORTLINK_URL', 'Modijiurl.com')
+SHORTLINK_API = environ.get('SHORTLINK_API', '69bfe45fc35b6b3178b4b95de9ef1db14a746ce7')
 IS_SHORTLINK = bool(environ.get('IS_SHORTLINK', True))
 DELETE_CHANNELS = [int(dch) if id_pattern.search(dch) else dch for dch in environ.get('DELETE_CHANNELS', '0').split()]
 MAX_B_TN = environ.get("MAX_B_TN", "5")
 MAX_BTN = is_enabled((environ.get('MAX_BTN', "True")), True)
 PORT = environ.get("PORT", "8080")
-BOT_USERNAME = environ.get("BOT_USERNAME", "Lucy_Filter_bot")
-BOT_NAME = environ.get("BOT_NAME", "𝐋ᴜᴄʏ")
-BOT_ID = environ.get("BOT_ID", "6040310745")
-S_GROUP = environ.get('S_GROUP', "weebs_support")
-S_CHANNEL = environ.get('S_CHANNEL', "codeflix_bots")
-GRP_LNK = environ.get('GRP_LNK', 'https://t.me/CodeFlix_Bots')
-CHNL_LNK = environ.get('CHNL_LNK', 'https://t.me/team_netflix')
-TUTORIAL = environ.get('TUTORIAL', 'https://t.me/How_to_Download_7x/32') # Tutorial video link for opening shortlink website 
+BOT_USERNAME = environ.get("BOT_USERNAME", "heartfilter_bot")
+BOT_NAME = environ.get("BOT_NAME", "✨ ʜᴇᴀʀᴛ ᴛʜɪᴇꜰ ⚡️")
+BOT_ID = environ.get("BOT_ID", "7041695823")
+S_GROUP = environ.get('S_GROUP', "TGHelpingGroup")
+S_CHANNEL = environ.get('S_CHANNEL', "HeartThieft_bot")
+GRP_LNK = environ.get('GRP_LNK', 'https://t.me/Movieprovidergroups')
+CHNL_LNK = environ.get('CHNL_LNK', 'https://t.me/TamizhZone')
+TUTORIAL = environ.get('TUTORIAL', 'https://t.me/How_To_Get_Movie') # Tutorial video link for opening shortlink website 
 IS_TUTORIAL = bool(environ.get('IS_TUTORIAL', True))
-MSG_ALRT = environ.get('MSG_ALRT', 'ᴍᴀɪɴᴛᴀɪɴᴇᴅ ʙʏ : ᴄᴏᴅᴇғʟɪx ʙᴏᴛs')
-SUPPORT_CHAT = environ.get('SUPPORT_CHAT', 'https://t.me/+DnmZbLjS0iw0YWI1') #Support group link ( make sure bot is admin )
+MSG_ALRT = environ.get('MSG_ALRT', 'ᴍᴀɪɴᴛᴀɪɴᴇᴅ ʙʏ : ʜᴇᴀʀᴛ_ᴛʜɪᴇꜰᴛ😇')
+SUPPORT_CHAT = environ.get('SUPPORT_CHAT', 'https://t.me/TGHelpingGroup') #Support group link ( make sure bot is admin )
 P_TTI_SHOW_OFF = is_enabled((environ.get('P_TTI_SHOW_OFF', "False")), False)
 IMDB = is_enabled((environ.get('IMDB', "False")), False)
 AUTO_FFILTER = is_enabled((environ.get('AUTO_FFILTER', "True")), True)
@@ -131,7 +131,7 @@ LONG_IMDB_DESCRIPTION = is_enabled(environ.get("LONG_IMDB_DESCRIPTION", "False")
 SPELL_CHECK_REPLY = is_enabled(environ.get("SPELL_CHECK_REPLY", "True"), True)
 MAX_LIST_ELM = environ.get("MAX_LIST_ELM", None)
 INDEX_REQ_CHANNEL = int(environ.get('INDEX_REQ_CHANNEL', LOG_CHANNEL))
-FILE_STORE_CHANNEL = [int(ch) for ch in (environ.get('FILE_STORE_CHANNEL', '')).split()]
+FILE_STORE_CHANNEL = [int(ch) for ch in (environ.get('FILE_STORE_CHANNEL', '-1002389516001')).split()]
 MELCOW_NEW_USERS = is_enabled((environ.get('MELCOW_NEW_USERS', "True")), True)
 PROTECT_CONTENT = is_enabled((environ.get('PROTECT_CONTENT', "True")), True)
 PUBLIC_FILE_STORE = is_enabled((environ.get('PUBLIC_FILE_STORE', "True")), True)
@@ -156,8 +156,8 @@ else:
     ON_HEROKU = False
 BIND_ADRESS = str(getenv('WEB_SERVER_BIND_ADDRESS', '0.0.0.0'))
 FQDN = str(getenv('FQDN', BIND_ADRESS)) if not ON_HEROKU or getenv('FQDN') else APP_NAME+'.herokuapp.com'
-URL = "https://{}/".format(FQDN) if ON_HEROKU or NO_PORT else \
-    "https://{}/".format(FQDN, PORT)
+URL = "https://premiumbot.koyeb.app/".format(FQDN) if ON_HEROKU or NO_PORT else \
+    "https://premiumbot.koyeb.app/".format(FQDN, PORT)
 SLEEP_THRESHOLD = int(environ.get('SLEEP_THRESHOLD', '60'))
 WORKERS = int(environ.get('WORKERS', '4'))
 SESSION_NAME = str(environ.get('SESSION_NAME', 'LazyBot'))
@@ -172,9 +172,9 @@ else:
     ON_HEROKU = False
 HAS_SSL=bool(getenv('HAS_SSL',True))
 if HAS_SSL:
-    URL = "https://{}/".format(FQDN)
+    URL = "https://premiumbot.koyeb.app/".format(FQDN)
 else:
-    URL = "http://{}/".format(FQDN)
+    URL = "https://premiumbot.koyeb.app/".format(FQDN)
 
 # add premium logs channel id
 PREMIUM_LOGS = int(environ.get('PREMIUM_LOGS', '-1001868871195'))
