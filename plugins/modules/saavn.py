@@ -56,11 +56,11 @@ async def video(client, message):
         return ""
     pak = await message.reply('Downloading...')
     try:
-        r = requests.get(f"https://saavn.me/search/songs?query={args}&page=1&limit=1").json()
+        r = requests.get(f"https://www.jiosaavn.com/search/songs?query={args}&page=1&limit=1").json()
     except Exception as e:
         await pak.edit(str(e))
         return
-    r = requests.get(f"https://saavn.me/search/songs?query={args}&page=2&limit=2").json()
+    r = requests.get(f"https://www.jiosaavn.com/search/songs?query={args}&page=2&limit=2").json()
     sname = r['data']['results'][0]['name']
     slink = r['data']['results'][0]['downloadUrl'][4]['link']
     ssingers = r['data']['results'][0]['primaryArtists']
