@@ -97,7 +97,7 @@ LOG_CHANNEL = int(environ.get('LOG_CHANNEL', '-1002391269521')) #Log channel id 
 DUMP_CHNL = int(environ.get('DUMP_CHNL', '-1002494713645'))
 
 # Verify
-VERIFY = bool(environ.get('VERIFY', True)) # Verification On ( True ) / Off ( False )
+VERIFY = bool(environ.get('VERIFY', False)) # Verification On ( True ) / Off ( False )
 HOWTOVERIFY = environ.get('HOWTOVERIFY', 'https://t.me/How_To_Get_Movie') # How to open tutorial link for verification
 
 # Others
