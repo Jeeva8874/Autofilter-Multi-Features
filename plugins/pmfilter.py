@@ -2815,16 +2815,6 @@ async def cb_handler(client: Client, query: CallbackQuery):
             InlineKeyboardButton('sᴜᴘᴘᴏʀᴛ', callback_data='group_info')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
-        await query.message.edit_text(
-            text="● ◌ ◌"
-        )
-        await query.message.edit_text(
-            text="● ● ◌"
-        )
-        await query.message.edit_text(
-            text="● ● ●"
-        )
-        reply_markup = InlineKeyboardMarkup(buttons)
         await client.edit_message_media(
             query.message.chat.id, 
             query.message.id, 
@@ -2840,16 +2830,6 @@ async def cb_handler(client: Client, query: CallbackQuery):
             InlineKeyboardButton('ʙᴀᴄᴋ', callback_data='main'),
             InlineKeyboardButton('sᴜᴘᴘᴏʀᴛ', callback_data='group_info')
         ]]
-        reply_markup = InlineKeyboardMarkup(buttons)
-        await query.message.edit_text(
-            text="● ◌ ◌"
-        )
-        await query.message.edit_text(
-            text="● ● ◌"
-        )
-        await query.message.edit_text(
-            text="● ● ●"
-        )
         reply_markup = InlineKeyboardMarkup(buttons)
         await client.edit_message_media(
             query.message.chat.id, 
@@ -3439,15 +3419,13 @@ async def auto_filter(client, msg, spoll=False):
         if re.findall("((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F]).*)", message.text):
             return
         if len(message.text) < 100:
-            search = message.text
-            m=await message.reply_text(f"🔎")
+            search = message.text         
             search = search.lower()
-            find = search.split("ᴡᴀɪᴛ ʙʀᴏ..")
+            m=await message.reply_text(f'**🔎 sᴇᴀʀᴄʜɪɴɢ** `{search}`')
+            find = search.split(" ")
             search = ""
             removes = ["in","upload", "series", "full", "horror", "thriller", "mystery", "print", "file"]
             for x in find:
-                # if x == "in" or x == "upload" or x == "series" or x == "full" or x == "horror" or x == "thriller" or x == "mystery" or x == "print" or x == "subtitle" or x == "subtitles":
-                #     continue
                 if x in removes:
                     continue
                 else:
@@ -3461,17 +3439,25 @@ async def auto_filter(client, msg, spoll=False):
             if not files:
                 await m.delete()
                 if settings["spell_check"]:
-                    return await advantage_spell_chok(client, msg)
-                else:
-                    # if NO_RESULTS_MSG:
-                    #     await client.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, search)))
-                    return
+                    st=await message.reply_sticker(sticker="CAACAgQAAxkBAAEq2R9mipkiW9ACyj7oQXznwKTPHqNCXQACkBUAA3mRUZGx4GwLX9XCHgQ")
+                    ai_sts = await message.reply_text('<b>𝑺𝒎𝒂𝒓𝒕 𝑺𝒆𝒂𝒓𝒄𝒉 𝑴𝒐𝒅𝒆 𝑶𝒏 ⚡. 𝑷𝒍𝒆𝒂𝒔𝒆 𝒘𝒂𝒊𝒕.</b>')
+                    is_misspelled = await ai_spell_check(chat_id = message.chat.id,wrong_name=search)
+                    if is_misspelled:
+                        await ai_sts.edit(f'<b>𝑺𝒎𝒂𝒓𝒕 𝑺𝒆𝒂𝒓𝒄𝒉 𝑺𝒖𝒈𝒈𝒆𝒔𝒕𝒆𝒅 🤖 <code>{is_misspelled}</code>\n𝑺𝒐 𝑰𝒎 𝑺𝒆𝒂𝒓𝒄𝒉𝒊𝒏𝒈 𝒇𝒐𝒓 🔎 <code>{is_misspelled}</code></b>')
+                        await asyncio.sleep(2)
+                        message.text = is_misspelled
+                        await st.delete()
+                        await ai_sts.delete()
+                        return await auto_filter(client, message)
+                    await st.delete()
+                    await ai_sts.delete()
+                    return await advantage_spell_chok(client, message)
         else:
             return
     else:
         message = msg.message.reply_to_message  # msg will be callback query
         search, files, offset, total_results = spoll
-        m=await message.reply_text(f"🔎")
+        m=await message.reply_text(f'**🔎 sᴇᴀʀᴄʜɪɴɢ** `{search}`')
         settings = await get_settings(message.chat.id)
         await msg.message.delete()
     # if 'is_shortlink' in settings.keys():
@@ -3606,18 +3592,18 @@ async def auto_filter(client, msg, spoll=False):
             **locals()
         )
         if not settings["button"]:
-            cap+="<b>\n\n<u>❍ Requested Files 👇</u></b>\n"
-            for file in files:
-                cap += f"<b>\n❍ <a href='https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}'>[{get_size(file.file_size)}] {' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@') and not x.startswith('www.'), file.file_name.split()))}\n</a></b>"
+            cap+="\n\n<b>📚 <u>Your Requested Files</u> 👇\n\n</b>"
+            for idx, file in enumerate(files[:500]):
+                cap += f"<b>\n{idx + 1}. <a href='https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}'>[{get_size(file.file_size)}] {' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@') and not x.startswith('www.'), file.file_name.split()))}\n</a></b>"
     else:
         if settings["button"]:
             cap = f"<b>• ᴛɪᴛʟᴇ : <code>{search}</code>\n\n• ᴛᴏᴛᴀʟ ꜰɪʟᴇꜱ : <code>{total_results}</code>\n• ʀᴇǫᴜᴇsᴛᴇᴅ ʙʏ : {message.from_user.mention}\n• ʀᴇsᴜʟᴛ ɪɴ : <code>{remaining_seconds} Sᴇᴄᴏɴᴅs</code>\n\n• ᴘᴏᴡᴇʀᴇᴅ ʙʏ : {message.chat.title} \n\n</b>"
         else:
             # cap = f"<b>Hᴇʏ {message.from_user.mention}, Hᴇʀᴇ ɪs ᴛʜᴇ ʀᴇsᴜʟᴛ ғᴏʀ ʏᴏᴜʀ ᴏ̨ᴜᴇʀʏ {search} \n\n</b>"
             cap = f"<b>• ᴛɪᴛʟᴇ : <code>{search}</code>\n\n• ᴛᴏᴛᴀʟ ꜰɪʟᴇꜱ : <code>{total_results}</code>\n• ʀᴇǫᴜᴇsᴛᴇᴅ ʙʏ : {message.from_user.mention}\n• ʀᴇsᴜʟᴛ ɪɴ : <code>{remaining_seconds} Sᴇᴄᴏɴᴅs</code>\n\n• ᴘᴏᴡᴇʀᴇᴅ ʙʏ : {message.chat.title} \n\n</b>"
-            cap+="<b><u>❍ Requested Files 👇</u></b>\n\n"
-            for file in files:
-                cap += f"<b>❍ <a href='https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}'>[{get_size(file.file_size)}] {' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@') and not x.startswith('www.'), file.file_name.split()))}\n\n</a></b>"
+            #cap+="<b><u>❍ Requested Files 👇</u></b>\n\n"
+            for idx, file in enumerate(files[:500]):
+                cap +=  f"<b>{idx + 1}. <a href='https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}'>[{get_size(file.file_size)}] {' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@') and not x.startswith('www.'), file.file_name.split()))}\n\n</a></b>"
 
     if imdb and imdb.get('poster'):
         try:
@@ -3697,7 +3683,7 @@ async def advantage_spell_chok(client, msg):
         logger.exception(e)
         reqst_gle = mv_rqst.replace(" ", "+")
         button = [[
-                   InlineKeyboardButton("ɢᴏᴏɢʟᴇ ᴋᴀʀᴏ ʙʜᴀɪ", url=f"https://www.google.com/search?q={reqst_gle}")
+                   InlineKeyboardButton("🔍 ᴄʜᴇᴄᴋ sᴘᴇʟʟɪɴɢ ᴏɴ ɢᴏᴏɢʟᴇ 🔍", url=f"https://www.google.com/search?q={reqst_gle}")
         ]]
         if NO_RESULTS_MSG:
             await client.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, mv_rqst)))
@@ -3713,7 +3699,7 @@ async def advantage_spell_chok(client, msg):
     if not movies:
         reqst_gle = mv_rqst.replace(" ", "+")
         button = [[
-                   InlineKeyboardButton("ɢᴏᴏɢʟᴇ ᴋᴀʀᴏ ʙʜᴀɪ", url=f"https://www.google.com/search?q={reqst_gle}")
+                   InlineKeyboardButton("🔍 ᴄʜᴇᴄᴋ sᴘᴇʟʟɪɴɢ ᴏɴ ɢᴏᴏɢʟᴇ 🔍", url=f"https://www.google.com/search?q={reqst_gle}")
         ]]
         if NO_RESULTS_MSG:
             await client.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, mv_rqst)))
